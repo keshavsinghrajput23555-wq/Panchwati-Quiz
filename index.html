@@ -358,8 +358,12 @@ function loadQ(){
     container.appendChild(btn);
   });
 }
-
-function checkAns(i,btn,q){
+const correctSound = document.getElementById("sound-correct");
+if (correctSound) {
+  correctSound.pause();
+  correctSound.currentTime = 0;
+  correctSound.play().catch(()=>{});
+}
   if(answered)return;
   answered=true;
   const allBtns=document.querySelectorAll('.option-btn');
@@ -382,10 +386,12 @@ correctSound.play();
       sb.textContent=`🔥 ${streak} सही उत्तर लगातार!`;
     }
   }else{
-    // Wrong Sound
-const wrongSound = document.getElementById("sound-wrong");
-wrongSound.currentTime = 0;
-wrongSound.play();
+ const wrongSound = document.getElementById("sound-wrong");
+if (wrongSound) {
+  wrongSound.pause();
+  wrongSound.currentTime = 0;
+  wrongSound.play().catch(()=>{});
+}
     streak=0;
     btn.classList.add('wrong');
     fb.className='feedback wrong-fb show';
