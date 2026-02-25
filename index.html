@@ -368,6 +368,10 @@ function checkAns(i,btn,q){
   const fb=document.getElementById('fb');
   if(i===q._sAns){
     score++;streak++;if(streak>maxStreak)maxStreak=streak;
+    // Correct Sound
+const correctSound = document.getElementById("sound-correct");
+correctSound.currentTime = 0;
+correctSound.play();
     document.getElementById('score-disp').textContent=score;
     btn.classList.add('correct');
     fb.className='feedback correct-fb show';
@@ -378,6 +382,10 @@ function checkAns(i,btn,q){
       sb.textContent=`🔥 ${streak} सही उत्तर लगातार!`;
     }
   }else{
+    // Wrong Sound
+const wrongSound = document.getElementById("sound-wrong");
+wrongSound.currentTime = 0;
+wrongSound.play();
     streak=0;
     btn.classList.add('wrong');
     fb.className='feedback wrong-fb show';
@@ -430,7 +438,7 @@ for(let i=0;i<14;i++){
   ff.style.animationDelay=`${Math.random()*8}s`;
 }
 </script>
-<audio id="correctSound" src="conch.mp3"></audio>
-<audio id="wrongSound" src="buzzer.mp3"></audio>
+<audio id="sound-correct" src="conch.mp3"></audio>
+<audio id="sound-wrong" src="buzzer.mp3"></audio>
 </body>
 </html>
